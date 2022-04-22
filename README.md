@@ -1,2 +1,1 @@
-# Learning
-Daily Learning Record
+日常学习笔记
