@@ -11,7 +11,10 @@ ONNX (Open Neural Network Exchange) 是一个开源生态系统，提供针对AI
 ## 2.0 安装 `ONNX` 和 `ONNX Runtime`
 
 ```bash
-pip install onnx onnxruntime
+pip install onnx onnxruntime # CPU版本
+pip install onnx onnxruntime-gpu # GPU版本
+
+print(onnxruntime.get_device())
 ```
 
 ## 2.1 图像超分辨率
@@ -149,7 +152,8 @@ img_y = img_y.transpose([2, 0, 1])[None, ...].astype(np.float32) / 255.
 ```python
 import onnxruntime
 
-ort_session = onnxruntime.InferenceSession("super_resolution.onnx")
+ort_session = onnxruntime.InferenceSession("super_resolution.onnx", providers=['CUDAExecutionProvider'])
+# providers=['TensorrtExecutionProvider', 'CUDAExecutionProvider', 'CPUExecutionProvider']
 ```
 
 执行推理：
